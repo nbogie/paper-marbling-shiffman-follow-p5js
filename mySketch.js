@@ -1,5 +1,5 @@
-let x;
-let y;
+let walkerX;
+let walkerY;
 
 let palette;
 
@@ -10,7 +10,7 @@ const allPalettes = [
 ];
 
 function setup() {
-  createCanvas(600, 500);
+  createCanvas(windowWidth, windowHeight);
   // frameRate(20);
   restartWalker();
 }
@@ -21,8 +21,8 @@ function draw() {
 }
 
 function restartWalker() {
-  x = 300;
-  y = 250;
+  walkerX = width / 2;
+  walkerY = height / 2;
   background("linen");
   palette = random(allPalettes);
 }
@@ -34,25 +34,25 @@ function drawWalker() {
   noStroke();
   rectMode(CENTER);
 
-  square(x, y, diam, random(0, 200));
+  square(walkerX, walkerY, diam, random(0, 200));
 
   fill(random(palette));
-  square(x, y, diam / 2);
+  square(walkerX, walkerY, diam / 2);
 }
 
 function moveWalker() {
   const step = 50;
-  x += random(-step, step);
-  y += random(-step, step);
+  walkerX += random(-step, step);
+  walkerY += random(-step, step);
   //if circle pos is off canvas then recentre pos and wipe
-  if (x > 600 || x < 0 || y > 500 || y < 0) {
+  if (walkerX > width || walkerX < 0 || walkerY > height || walkerY < 0) {
     restartWalker();
   }
 }
 
 function mouseClicked() {
-  x = mouseX;
-  y = mouseY;
+  walkerX = mouseX;
+  walkerY = mouseY;
 }
 
 function keyPressed() {
