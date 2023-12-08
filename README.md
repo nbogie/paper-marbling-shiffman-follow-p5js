@@ -1,6 +1,12 @@
-# p5js-example
+# p5js-js-global-mode-starter
+
+A starter project for coding p5.js in JavaScript.
 
 While we recommend you use [OpenProcessing](https://openprocessing.org/) (or the [p5.js web editor](https://editor.p5js.org/)) to play with p5.js most of the time, this example project is useful if you want to develop locally using (for example) vscode, and perhaps version control.
+
+### See also 
+* [https://github.com/WeAreAcademy/academy-p5js-ts-global-mode-starter](a starter for p5.js with typescript (traditional global mode))
+* [https://github.com/nbogie/p5-ts-starter-23](a starter for p5.js with typescript (instance mode - supports ESModules))
 
 ### Components:
 
