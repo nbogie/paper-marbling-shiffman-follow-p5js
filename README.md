@@ -1,7 +1,7 @@
 # p5js-example
 While we recommend you use [OpenProcessing](https://openprocessing.org/) (or the [p5.js web editor](https://editor.p5js.org/)) to play with p5.js most of the time, this example project is useful if you want to develop locally using (for example) vscode, and also shows you a slightly bigger picture.
 
-It's an example index.html, and p5.js "sketch" file.
+It's an example index.html, a p5.js "sketch" file, `mySketch.js` and, for demonstration, a second supporting javascript file, `myPalettes.js`.
 
 
 # installation / running:
