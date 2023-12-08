@@ -1,4 +1,7 @@
-/** @return a palette chosen at random,
+//This is a second javascript file containing functions to support the main one, "mySketch.js"
+//It must also be loaded in index.html
+
+/** @returns a palette chosen at random,
  * as an array of strings each of which represents a colour (e.g. "#f04155")
  */
 function randomPalette() {
