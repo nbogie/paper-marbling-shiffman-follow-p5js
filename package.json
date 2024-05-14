@@ -1,0 +1,14 @@
+{
+    "name": "p5js-js-global-mode-starter",
+    "version": "1.0.0",
+    "main": "index.js",
+    "repository": "https://github.com/WeAreAcademy/p5js-js-global-mode-starter.git",
+    "author": "nbogie <neillbogie@googlemail.com>",
+    "license": "MIT",
+    "devDependencies": {
+        "prettier": "^3.2.5"
+    },
+    "scripts": {
+        "format": "prettier --write ."
+    }
+}

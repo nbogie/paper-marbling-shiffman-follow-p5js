@@ -4,6 +4,8 @@ A starter project for coding p5.js in JavaScript.
 
 While we recommend you use [OpenProcessing](https://openprocessing.org/) (or the [p5.js web editor](https://editor.p5js.org/)) to play with p5.js most of the time, this example project is useful if you want to develop locally using (for example) vscode, and perhaps version control.
 
+Note: This is NOT a node.js project. The package.json is there to provide formatting support with prettier, only.
+
 ### Components:
 
 -   index.html - loaded first.
@@ -26,6 +28,7 @@ While we recommend you use [OpenProcessing](https://openprocessing.org/) (or the
 
 Please note we DO NOT use Live Server at all for React development!
 
-## See also 
-* [a starter for p5.js with typescript (traditional global mode)](https://github.com/WeAreAcademy/academy-p5js-ts-global-mode-starter)
-* [a starter for p5.js with typescript (instance mode - supports ESModules)](https://github.com/nbogie/p5-ts-starter-23)
+## See also
+
+-   [a starter for p5.js with typescript (traditional global mode)](https://github.com/WeAreAcademy/academy-p5js-ts-global-mode-starter)
+-   [a starter for p5.js with typescript (instance mode - supports ESModules)](https://github.com/nbogie/p5-ts-starter-23)
