@@ -6,6 +6,8 @@ While we recommend you use [OpenProcessing](https://openprocessing.org/) (or the
 
 Note: This is NOT a node.js project. The package.json is there to provide formatting support with prettier, only.
 
+If you are writing a bigger project with p5.js it may be useful to consider working in instance mode instead of global mode. (Particularly - but not only - if you're working in TypeScript.)
+
 ### Components:
 
 -   index.html - loaded first.
