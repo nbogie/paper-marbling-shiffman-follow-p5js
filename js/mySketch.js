@@ -6,10 +6,16 @@
 let currentPalette;
 /** @type {string[]} */
 let otherColours;
+/** @type {string} */
+let bgColour;
 
 /** @type {Splat[]} */
 let splats;
+let font;
 
+function preload() {
+    font = loadFont("./Lobster-Regular.ttf");
+}
 function setup() {
     createCanvas(windowWidth, windowHeight);
     noStroke();
@@ -18,26 +24,32 @@ function setup() {
 }
 
 function draw() {
+    background(bgColour);
     textSize(30);
     textAlign(RIGHT, CENTER);
     text(currentPalette.name, width - 30, height - 30);
     drawSplats();
 }
 
+function restart() {
+    currentPalette = randomPalette();
+    const result = splitPalette(currentPalette);
+    bgColour = result.bgColour;
+    otherColours = result.otherColours;
+    splats = [];
+    addTextAsSplat({
+        fontSize: 300,
+        word: "Code",
+        pos: createVector(width / 2, height / 2),
+    });
+    createSplats();
+    redraw();
+}
+
 function drawSplats() {
     splats.forEach(drawSplat);
 }
 
-function restart() {
-    currentPalette = randomPalette();
-    const result = splitPalette(currentPalette);
-    background(result.bgColour);
-
-    otherColours = result.otherColours;
-    createSplats();
-
-    redraw();
-}
 function mouseClicked() {
     // restart();
     createAndAddOneSplat(createVector(mouseX, mouseY), random(50, 100));
@@ -59,7 +71,6 @@ function keyPressed() {
     }
 }
 function createSplats() {
-    splats = [];
     for (let i = 0; i < 5; i++) {
         const r = random(50, 200);
         createAndAddOneSplat(randomScreenPos(), r);
@@ -75,4 +86,34 @@ function createAndAddOneSplat(pos, radius) {
 
     splats.forEach((mainSplat) => deformSplatBasedOn(mainSplat, newSplat));
     splats.push(newSplat);
+}
+
+function addTextAsSplat({ word, fontSize, pos }) {
+    const options = {};
+    textAlign(CENTER, CENTER);
+    const fontPoints = font
+        .textToPoints(word, pos.x, pos.y, fontSize, options)
+        .map((pt) => createVector(pt.x, pt.y));
+
+    const minX = min(fontPoints.map((p) => p.x));
+    const maxX = max(fontPoints.map((p) => p.x));
+    const minY = min(fontPoints.map((p) => p.y));
+    const maxY = max(fontPoints.map((p) => p.y));
+
+    const offset = createVector(-(maxX - minX) / 2, (maxY - minY) / 2);
+    console.log({ offset, minY, maxY });
+    const finalPoints = fontPoints.map((p) => p5.Vector.add(p, offset));
+    /** @type {Splat} */
+    const textSplat = {
+        centre: createVector(width / 2, height / 2),
+        initialRadius: 100,
+        colour: random(otherColours),
+        pts: finalPoints,
+        shouldFill: true,
+        shouldClose: false,
+        strokeWeight: 5,
+    };
+
+    console.log({ textSplat });
+    splats.push(textSplat);
 }

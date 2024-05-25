@@ -1,5 +1,13 @@
 const NUM_POINTS_IN_SPLATS = 128;
-/** @typedef {{pts: p5.Vector[],initialRadius:number, colour: string, centre: p5.Vector}} Splat */
+/** @typedef {{
+ pts: p5.Vector[],
+ initialRadius:number, 
+ shouldFill:boolean, 
+ shouldClose:boolean, 
+ colour: string, 
+ centre: p5.Vector,
+ strokeWeight:number
+}} Splat */
 
 /**
  * @returns {Splat}
@@ -17,6 +25,9 @@ function createSplat({ radius, pos, colour }) {
         colour,
         centre: pos.copy(),
         initialRadius: radius,
+        strokeWeight: 0,
+        shouldFill: true,
+        shouldClose: true,
     };
 }
 
@@ -27,12 +38,20 @@ function createSplat({ radius, pos, colour }) {
 function drawSplat(splat) {
     push();
     beginShape();
-    noStroke();
-    fill(splat.colour);
+    if (splat.shouldFill) {
+        noStroke();
+        fill(splat.colour);
+    } else {
+        strokeWeight(splat.strokeWeight);
+        stroke(splat.colour);
+        noFill();
+    }
+
     for (let pt of splat.pts) {
         vertex(pt.x, pt.y);
     }
-    endShape(CLOSE);
+
+    splat.shouldClose ? endShape(CLOSE) : endShape();
     pop();
 }
 
