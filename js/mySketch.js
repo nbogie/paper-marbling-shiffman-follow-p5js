@@ -26,10 +26,10 @@ function setup() {
 
 function draw() {
     background(bgColour);
+    drawSplats();
     textSize(30);
     textAlign(RIGHT, CENTER);
     text(currentPalette.name, width - 30, height - 30);
-    drawSplats();
 }
 
 function restart() {
@@ -71,6 +71,9 @@ function mouseDragged() {
 function keyPressed() {
     if (key === "s") {
         save("my-p5-screenshot");
+    }
+    if (key === " ") {
+        restart();
     }
 }
 function createSplats() {
