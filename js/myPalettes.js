@@ -116,3 +116,20 @@ function randomPalette() {
     const p = random(allPalettes);
     return { ...p, colors: shuffle(p.colors) };
 }
+
+/**
+ *
+ * @param {Palette} palette
+ * @returns { {bgColour:string, otherColours: string[]}}
+ */
+function splitPalette(palette) {
+    if (palette.background) {
+        const otherColours = palette.colors.filter(
+            (c) => c !== palette.background
+        );
+        return { bgColour: palette.background, otherColours };
+    }
+
+    const [bgColour, ...otherColours] = currentPalette.colors;
+    return { bgColour, otherColours };
+}
