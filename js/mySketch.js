@@ -2,6 +2,7 @@
 //It must be loaded from index.html
 //It assumes that the file "myPalettes.js" has also been loaded
 
+const config = { shouldAddText: false };
 /** @type {Palette} */
 let currentPalette;
 /** @type {string[]} */
@@ -37,11 +38,13 @@ function restart() {
     bgColour = result.bgColour;
     otherColours = result.otherColours;
     splats = [];
-    addTextAsSplat({
-        fontSize: 300,
-        word: "Code",
-        pos: createVector(width / 2, height / 2),
-    });
+    if (config.shouldAddText) {
+        addTextAsSplat({
+            fontSize: 300,
+            word: "Code",
+            pos: createVector(width / 2, height / 2),
+        });
+    }
     createSplats();
     redraw();
 }
