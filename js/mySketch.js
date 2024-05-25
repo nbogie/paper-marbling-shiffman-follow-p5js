@@ -104,7 +104,6 @@ function addTextAsSplat({ word, fontSize, pos }) {
     const maxY = max(fontPoints.map((p) => p.y));
 
     const offset = createVector(-(maxX - minX) / 2, (maxY - minY) / 2);
-    console.log({ offset, minY, maxY });
     const finalPoints = fontPoints.map((p) => p5.Vector.add(p, offset));
     /** @type {Splat} */
     const textSplat = {
@@ -117,6 +116,5 @@ function addTextAsSplat({ word, fontSize, pos }) {
         strokeWeight: 5,
     };
 
-    console.log({ textSplat });
     splats.push(textSplat);
 }
