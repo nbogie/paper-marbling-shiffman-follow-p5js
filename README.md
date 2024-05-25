@@ -1,4 +1,9 @@
-# p5js-js-global-mode-starter
+# Paper marbling - p5.js
+
+-   Roughly following the first part of this Shiffman video: https://www.youtube.com/watch?v=p7IGZTjC008
+-   Paper: https://people.csail.mit.edu/jaffer/Marbling/
+
+## Was: p5js-js-global-mode-starter
 
 A starter project for coding p5.js in JavaScript.
 
