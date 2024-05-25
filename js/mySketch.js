@@ -39,7 +39,18 @@ function restart() {
     redraw();
 }
 function mouseClicked() {
-    restart();
+    // restart();
+    createAndAddOneSplat(createVector(mouseX, mouseY), random(50, 100));
+    redraw();
+}
+
+function mousePos() {
+    return createVector(mouseX, mouseY);
+}
+function mouseDragged() {
+    const offset = p5.Vector.random2D().mult(random(5, 40));
+    createAndAddOneSplat(mousePos().add(offset), random(10, 60));
+    redraw();
 }
 
 function keyPressed() {
@@ -48,11 +59,20 @@ function keyPressed() {
     }
 }
 function createSplats() {
-    splats = collect(10, (ix) => {
-        return createSplat({
-            radius: random(30, 200),
-            pos: randomScreenPos(),
-            colour: random(otherColours),
-        });
+    splats = [];
+    for (let i = 0; i < 5; i++) {
+        const r = random(50, 200);
+        createAndAddOneSplat(randomScreenPos(), r);
+    }
+}
+
+function createAndAddOneSplat(pos, radius) {
+    const newSplat = createSplat({
+        radius,
+        pos,
+        colour: random(otherColours),
     });
+
+    splats.forEach((mainSplat) => deformSplatBasedOn(mainSplat, newSplat));
+    splats.push(newSplat);
 }

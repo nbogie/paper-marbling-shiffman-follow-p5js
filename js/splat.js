@@ -1,11 +1,12 @@
-/** @typedef {{pts: p5.Vector[], colour: string}} Splat */
+const NUM_POINTS_IN_SPLATS = 128;
+/** @typedef {{pts: p5.Vector[],initialRadius:number, colour: string, centre: p5.Vector}} Splat */
 
 /**
  * @returns {Splat}
  */
 function createSplat({ radius, pos, colour }) {
     const pts = [];
-    const numPoints = 32;
+    const numPoints = NUM_POINTS_IN_SPLATS;
     const angleStep = TWO_PI / numPoints;
     for (let angle = 0; angle < TWO_PI; angle += angleStep) {
         const offset = polarToCartesian(angle, radius);
@@ -14,6 +15,8 @@ function createSplat({ radius, pos, colour }) {
     return {
         pts,
         colour,
+        centre: pos.copy(),
+        initialRadius: radius,
     };
 }
 
@@ -31,4 +34,21 @@ function drawSplat(splat) {
     }
     endShape(CLOSE);
     pop();
+}
+
+/**
+ * @param {Splat} mainSplat
+ * @param {Splat} otherSplat
+ */
+function deformSplatBasedOn(mainSplat, otherSplat) {
+    const c = otherSplat.centre;
+    mainSplat.pts.forEach((p) => {
+        const pMinusC = p5.Vector.sub(p, c);
+        const r = otherSplat.initialRadius;
+        const movement = p5.Vector.add(
+            c,
+            pMinusC.mult(sqrt(1 + (r * r) / pMinusC.magSq()))
+        );
+        p.set(movement);
+    });
 }
