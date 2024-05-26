@@ -10,6 +10,15 @@
 -   "3": switch to layer 3
 -   " ": clear
 
+## Credits
+
+-   Palettes from Kjetil Golid's Chromotome: https://kgolid.github.io/chromotome-site/
+
+-   Following Daniel Shiffman's Coding Train video on paper marbling:
+
+    -   https://www.youtube.com/watch?v=p7IGZTjC008
+    -   which uses an algorithm from this paper: https://people.csail.mit.edu/jaffer/Marbling/
+
 ## Was: p5js-js-global-mode-starter
 
 A starter project for coding p5.js in JavaScript.

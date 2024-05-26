@@ -6,7 +6,7 @@
         name: string,
         background?: string,
         stroke?:string,
-        size: number
+        size?: number
     }} Palette */
 /** @returns {Palette} a palette chosen at random,
  * as an array of strings each of which represents a colour (e.g. "#f04155")
@@ -143,6 +143,73 @@ function randomPalette() {
             stroke: "#000000",
             background: "#ffffff",
             size: 5,
+        },
+        {
+            name: "candy-wrap",
+            colors: [
+                "#f19797",
+                "#f9b73e",
+                "#ee5151",
+                "#fb671f",
+                "#6bbe3a",
+                "#0c75b7",
+                "#0b9e4e",
+                "#763f68",
+            ],
+            stroke: "#302319",
+            background: "#e7ded5",
+        },
+        {
+            name: "slicks",
+            colors: ["#e1decd", "#d95336", "#e6ac1d"],
+            stroke: "#302319",
+            background: "#e1decd",
+        },
+        {
+            name: "circus",
+            colors: [
+                "#3eb79e",
+                "#f4a910",
+                "#f37377",
+                "#207986",
+                "#f26003",
+                "#afce95",
+            ],
+            stroke: "#302319",
+            background: "#eadcb6",
+        },
+        {
+            name: "spotlight",
+            colors: ["#f34312", "#00a49e", "#ef888f", "#f5b408", "#412432"],
+            stroke: "#412432",
+            background: "#dfdcd5",
+        },
+        {
+            name: "five-stars",
+            colors: [
+                "#f5e8c7",
+                "#d9dcad",
+                "#cf3933",
+                "#f3f4f4",
+                "#74330d",
+                "#8bb896",
+                "#eba824",
+                "#f05c03",
+            ],
+            stroke: "#380c05",
+            background: "#ecd598",
+        },
+        {
+            name: "full-moon",
+            colors: ["#f7e8be", "#aa879f", "#f6634e"],
+            stroke: "#2a1f39",
+            background: "#f7e8be",
+        },
+        {
+            name: "risograph",
+            colors: ["#f56f64", "#f9cb1f", "#f0eace"],
+            stroke: "#295042",
+            background: "#f0eace",
         },
     ];
 
