@@ -13,7 +13,8 @@ const NUM_POINTS_IN_SPLATS = 128;
  strokeWeight:number
 }} Splat */
 
-/**
+/** Create a splat as a set of points in a circle around the given pos at given radius.
+ * This function doesn't consider other splats that might be nearby.
  * @returns {Splat}
  */
 function createSplat({ radius, pos, colour }) {
