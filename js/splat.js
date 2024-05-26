@@ -1,7 +1,11 @@
 const NUM_POINTS_IN_SPLATS = 128;
-/** @typedef {{
+
+/** 
+ * A splat is a deformable blob of colour.  
+ * It keeps a list of points forming its boundary.  
+ @typedef {{
  pts: p5.Vector[],
- initialRadius:number, 
+ initialRadius:number,
  shouldFill:boolean, 
  shouldClose:boolean, 
  colour: string, 
