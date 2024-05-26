@@ -3,6 +3,13 @@
 -   Roughly following the first part of this Shiffman video: https://www.youtube.com/watch?v=p7IGZTjC008
 -   Paper: https://people.csail.mit.edu/jaffer/Marbling/
 
+### keys
+
+-   "1": switch to layer 1
+-   "2": switch to layer 2
+-   "3": switch to layer 3
+-   " ": clear
+
 ## Was: p5js-js-global-mode-starter
 
 A starter project for coding p5.js in JavaScript.

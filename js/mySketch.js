@@ -7,6 +7,10 @@ const config = { shouldAddText: false };
 /** @type {Palette} */
 let currentPalette;
 
+/** indicates the next splat layer to be added to / modified
+ * @type {number} */
+let currentSplatLayerIndex = 0;
+
 /**
  * The non-background colours from the current palette
  * @type {string[]} */
@@ -16,8 +20,9 @@ let otherColours;
  * @type {string} */
 let bgColour;
 
-/** @type {Splat[]} */
-let splats;
+/** @type {Splat[][]} */
+let splatLayers;
+
 let font;
 
 function preload() {
@@ -38,12 +43,16 @@ function draw() {
     text(currentPalette.name, width - 30, height - 30);
 }
 
-function restart() {
+function setupPalette() {
     currentPalette = randomPalette();
     const result = splitPalette(currentPalette);
     bgColour = result.bgColour;
     otherColours = result.otherColours;
-    splats = [];
+}
+
+function restart() {
+    setupPalette();
+    splatLayers = [[], [], []];
     if (config.shouldAddText) {
         addTextAsSplat({
             fontSize: 300,
@@ -56,12 +65,13 @@ function restart() {
 }
 
 function drawSplats() {
-    splats.forEach(drawSplat);
+    splatLayers.forEach((sl) => sl.forEach(drawSplat));
 }
 
 function mouseClicked() {
     // restart();
-    createAndAddOneSplat(createVector(mouseX, mouseY), random(50, 100));
+    const splats = splatLayers[currentSplatLayerIndex];
+    createAndAddOneSplat(createVector(mouseX, mouseY), random(50, 100), splats);
     redraw();
 }
 
@@ -69,8 +79,9 @@ function mousePos() {
     return createVector(mouseX, mouseY);
 }
 function mouseDragged() {
+    const splats = splatLayers[currentSplatLayerIndex];
     const offset = p5.Vector.random2D().mult(random(5, 40));
-    createAndAddOneSplat(mousePos().add(offset), random(10, 60));
+    createAndAddOneSplat(mousePos().add(offset), random(10, 60), splats);
     redraw();
 }
 
@@ -81,15 +92,30 @@ function keyPressed() {
     if (key === " ") {
         restart();
     }
-}
-function createSplats() {
-    for (let i = 0; i < 5; i++) {
-        const r = random(50, 200);
-        createAndAddOneSplat(randomScreenPos(), r);
+
+    if (key === "1") {
+        currentSplatLayerIndex = 0;
+    }
+    if (key === "2") {
+        currentSplatLayerIndex = 1;
+    }
+    if (key === "3") {
+        currentSplatLayerIndex = 2;
+    }
+    if (key === "p") {
+        setupPalette();
     }
 }
 
-function createAndAddOneSplat(pos, radius) {
+function createSplats() {
+    for (let i = 0; i < 5; i++) {
+        const splats = splatLayers[currentSplatLayerIndex];
+        const r = random(50, 200);
+        createAndAddOneSplat(randomScreenPos(), r, splats);
+    }
+}
+
+function createAndAddOneSplat(pos, radius, splats) {
     const newSplat = createSplat({
         radius,
         pos,
@@ -125,5 +151,5 @@ function addTextAsSplat({ word, fontSize, pos }) {
         strokeWeight: 5,
     };
 
-    splats.push(textSplat);
+    splatLayers[0].push(textSplat);
 }
